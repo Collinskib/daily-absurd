@@ -95,7 +95,7 @@ def _devin_angle_pass(candidates: list[dict]) -> list[dict] | None:
     out = config.BRIEFS_DIR / f"ideas-{ts}.json"
 
     cand_lines = "\n".join(
-        f"{i+1}. [{c['source']}] {c['title']} — {c['summary'][:200]} (url: {c['url']})"
+        f"{i+1}. [{c['source']}] {c['title']} — {c['summary'][:200]} (url: {c['source_url']})"
         for i, c in enumerate(candidates)
     )
     prompt.write_text(f"""You are the Satire Opportunity Analyst for The Daily Absurd,

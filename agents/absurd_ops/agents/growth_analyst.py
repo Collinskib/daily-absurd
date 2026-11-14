@@ -39,7 +39,7 @@ def run() -> dict:
 
     # Category performance snapshot
     cats = db.query(
-        """SELECT a.category, COUNT(*) n FROM published p
+        """SELECT i.category, COUNT(*) n FROM published p
            JOIN drafts d ON d.id = p.draft_id
            JOIN story_ideas i ON i.id = d.idea_id
            GROUP BY 1"""
