@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#faf6ec"/>
+  <circle cx="380" cy="300" r="170" fill="#16130e"/>
+  <circle cx="380" cy="300" r="130" fill="#faf6ec"/>
+  <g stroke="#16130e" stroke-width="8">
+    <line x1="380" y1="300" x2="380" y2="215"/>
+    <line x1="380" y1="300" x2="440" y2="330"/>
+  </g>
+  <circle cx="380" cy="300" r="12" fill="#e63b12"/>
+  <rect x="640" y="170" width="440" height="260" rx="4" fill="#fff" stroke="#16130e" stroke-width="4"/>
+  <g font-family="Georgia,serif" font-style="italic" font-size="32" fill="#3d382e">
+    <text x="680" y="240">Dear shop,</text>
+    <text x="680" y="290">I am so very sorry.</text>
+    <text x="680" y="340">Please forgive me.</text>
+    <text x="680" y="395" fill="#e63b12">— the thief</text>
+  </g>
+  <text x="600" y="555" font-family="Helvetica,sans-serif" font-size="24" font-weight="bold" fill="#16130e" text-anchor="middle" letter-spacing="6">TOKYO · CRIME, APOLOGETICALLY</text>
+</svg>

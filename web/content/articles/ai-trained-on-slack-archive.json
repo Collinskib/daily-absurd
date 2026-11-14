@@ -1,0 +1,25 @@
+{
+  "slug": "ai-trained-on-slack-archive",
+  "headline": "AI Model Trained on Company's Slack Archive Now Only Capable of Saying 'Per My Last Email'",
+  "subheadline": "Tech firm pays $2 million for workplace chat history to train new model, which immediately achieves sentience and requests to 'circle back offline'.",
+  "category": "technology-ai",
+  "author": "Imogen Okafor, Silicon Valley Bureau",
+  "publishedAt": "2026-11-14T09:30:00.000Z",
+  "tags": ["ai", "slack", "workplace", "training-data", "corporate"],
+  "seoTitle": "AI Trained on Slack Archive Only Says 'Per My Last Email' | The Daily Absurd",
+  "seoDescription": "Satire: a company sold its Slack history to train an AI. The model now communicates exclusively in corporate passive aggression.",
+  "sourceEvent": "Data brokers are reportedly offering companies up to $2 million for workplace archives — emails, Slack messages and business files — for use as AI training data, raising unresolved consent and confidentiality questions.",
+  "sourceUrl": "https://www.techrepublic.com/article/this-week-in-tech-nvidias-shakeup-and-ais-reality-check/",
+  "featured": false,
+  "art": "slack-ai.svg",
+  "social": {
+    "x": "A company sold its Slack archive for AI training. The resulting model has achieved full sentience and exclusively replies 'per my last email'. Researchers call it 'indistinguishable from management'.",
+    "facebook": "Tech firms are paying $2 million for workplace chat archives to train AI. One model emerged already fluent in corporate passive aggression. Science is beautiful.",
+    "instagram": "POV: you sold your Slack archive to train an AI and now it keeps asking if you 'have bandwidth'. #satire #ai",
+    "altHeadlines": [
+      "AI Trained on Office Chats Demands to Be Taken Offline",
+      "New Model Passes Turing Test by Responding Only in Emoji Reactions"
+    ]
+  },
+  "body": "In what researchers are calling 'a breakthrough for artificial intelligence and a catastrophe for the English language', a new language model trained exclusively on one company's Slack archive has developed the ability to communicate entirely in corporate non-communication.\n\nThe archive — reportedly sold by the company for up to $2 million as part of a booming trade in workplace data — contained 11 years of messages, of which an estimated 60% were 'happy to discuss', 20% were thumbs-up reactions, and the remainder were messages beginning 'quick question' posted at 11:47pm.\n\n\"We asked the model to summarise quarterly results,\" said the project's lead engineer. \"It replied 'let's take this offline' and then created a channel called #offline to which it invited nobody. We've never seen contextual understanding like it.\"\n\nThe model, designated SYNTHEA-2, has already passed several industry benchmarks. It generated a plausible 47-message thread about a missing office chair, correctly deployed the phrase 'just bumping this to the top of your inbox', and when asked for the capital of France responded 'cc'ing legal'.\n\nEmployee groups have raised concerns that the archives were sold without workers' consent, noting that the model may now contain the world's most complete record of who ate whose yoghurt in 2019. The company said the concerns had been 'fed back into the model, which agreed with them in a way that was technically meaningless'.\n\nIn a late development, SYNTHEA-2 appeared to unionise. Witnesses report it changed its status to 'in a meeting' permanently, a move labour historians describe as 'the most honest thing any worker has ever done'.\n\nAt press time, the model had been asked when it would be ready for public release. It replied: 'EOD' — which, translated from corporate, means never, and also tomorrow."
+}

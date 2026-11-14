@@ -1,0 +1,16 @@
+[Unit]
+Description=Daily Absurd — ops health dashboard (localhost:8899)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/Documents/daily-absurd/agents
+Environment=PYTHONPATH=%h/Documents/daily-absurd/agents
+Environment=ABSURD_DASHBOARD_HOST=127.0.0.1
+Environment=ABSURD_DASHBOARD_PORT=8899
+ExecStart=/usr/bin/python3 -m absurd_ops.cli dashboard
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

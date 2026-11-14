@@ -1,0 +1,18 @@
+[Unit]
+Description=Daily Absurd — editorial pipeline (research → draft → review → publish)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/Documents/daily-absurd/agents
+Environment=PYTHONPATH=%h/Documents/daily-absurd/agents
+Environment=SITE_URL=https://daily-absurd.vercel.app
+Environment=ABSURD_DEVIN_ENABLED=1
+Environment=ABSURD_GIT_PUSH=1
+ExecStart=/usr/bin/python3 -m absurd_ops.cli daily
+TimeoutStartSec=5400
+Nice=10
+
+[Install]
+WantedBy=default.target

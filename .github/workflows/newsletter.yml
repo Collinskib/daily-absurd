@@ -1,0 +1,23 @@
+name: newsletter
+on:
+  repository_dispatch:
+    types: [newsletter-signup, newsletter-unsubscribe]
+permissions:
+  contents: write
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: record subscriber event
+        run: |
+          FILE=web/content/subscribers.ndjson
+          STATUS=$([ "${{ github.event_name }}" = "repository_dispatch" ] && \
+            [ "${{ github.event.action }}" = "newsletter-unsubscribe" ] && echo unsubscribed || echo subscribed)
+          printf '{"email":"%s","status":"%s","at":"%s"}\n' \
+            '${{ github.event.client_payload.email }}' "$STATUS" "$(date -u +%FT%TZ)" >> "$FILE"
+          git config user.name "Daily Absurd Bot"
+          git config user.email "bot@dailyabsurd.news"
+          git add "$FILE"
+          git diff --cached --quiet || git commit -m "newsletter: $STATUS ${{ github.event.client_payload.email }}"
+          git push

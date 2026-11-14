@@ -1,0 +1,16 @@
+[project]
+name = "absurd-ops"
+version = "0.1.0"
+description = "Autonomous editorial operations for The Daily Absurd"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+absurd = "absurd_ops.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["absurd_ops*"]

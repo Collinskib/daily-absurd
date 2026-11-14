@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#faf6ec"/>
+  <rect x="80" y="80" width="700" height="90" rx="14" fill="#16130e"/>
+  <text x="110" y="138" font-family="Helvetica,sans-serif" font-size="34" font-weight="bold" fill="#faf6ec">per my last email</text>
+  <rect x="200" y="200" width="640" height="90" rx="14" fill="#e63b12"/>
+  <text x="230" y="258" font-family="Helvetica,sans-serif" font-size="34" font-weight="bold" fill="#faf6ec">let's take this offline</text>
+  <rect x="120" y="320" width="560" height="90" rx="14" fill="#16130e"/>
+  <text x="150" y="378" font-family="Helvetica,sans-serif" font-size="34" font-weight="bold" fill="#faf6ec">cc'ing legal</text>
+  <rect x="300" y="440" width="620" height="90" rx="14" fill="#3d382e"/>
+  <text x="330" y="498" font-family="Helvetica,sans-serif" font-size="34" font-weight="bold" fill="#faf6ec">bumping this to the top</text>
+  <circle cx="1020" cy="300" r="110" fill="none" stroke="#e63b12" stroke-width="10"/>
+  <text x="1020" y="330" font-family="Georgia,serif" font-size="90" font-weight="bold" fill="#16130e" text-anchor="middle">AI</text>
+  <text x="1020" y="470" font-family="Georgia,serif" font-style="italic" font-size="26" fill="#6f675a" text-anchor="middle">fully aligned</text>
+</svg>

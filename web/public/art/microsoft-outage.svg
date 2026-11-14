@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#16130e"/>
+  <rect x="60" y="60" width="1080" height="480" fill="#faf6ec"/>
+  <rect x="120" y="130" width="440" height="300" rx="8" fill="#16130e"/>
+  <rect x="145" y="155" width="390" height="220" fill="#faf6ec"/>
+  <text x="340" y="275" font-family="Georgia,serif" font-size="52" font-weight="bold" fill="#16130e" text-anchor="middle">NO</text>
+  <text x="340" y="330" font-family="Georgia,serif" font-size="52" font-weight="bold" fill="#e63b12" text-anchor="middle">SIGNAL</text>
+  <g stroke="#16130e" stroke-width="6" fill="none">
+    <path d="M660 300 q60 -90 120 0 q60 90 120 0 q60 -90 120 0"/>
+  </g>
+  <circle cx="900" cy="200" r="46" fill="#e63b12"/>
+  <text x="900" y="212" font-family="Helvetica,sans-serif" font-size="40" font-weight="bold" fill="#faf6ec" text-anchor="middle">?</text>
+  <g fill="#16130e" font-family="Georgia,serif" font-style="italic">
+    <text x="660" y="430" font-size="34">"…you're on mute."</text>
+    <text x="660" y="475" font-size="22" fill="#6f675a">— the last words of a civilisation</text>
+  </g>
+  <rect x="60" y="60" width="1080" height="480" fill="none" stroke="#16130e" stroke-width="6"/>
+</svg>

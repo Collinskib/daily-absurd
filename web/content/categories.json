@@ -1,0 +1,12 @@
+[
+  { "slug": "world-absurdities", "name": "World Absurdities", "blurb": "Planet Earth, doing planet Earth things.", "order": 1 },
+  { "slug": "politics-government", "name": "Politics & Government", "blurb": "Democracy, bureaucracy, and the people who run both into the ground.", "order": 2 },
+  { "slug": "technology-ai", "name": "Technology & AI", "blurb": "The machines are learning. Mostly our bad habits.", "order": 3 },
+  { "slug": "business-money", "name": "Business & Money", "blurb": "Synergy, disruption, and other ways to say 'we have no idea'.", "order": 4 },
+  { "slug": "entertainment-celebrity", "name": "Entertainment & Celebrity", "blurb": "Famous people doing inexplicable things, explained inexplicably.", "order": 5 },
+  { "slug": "internet-culture", "name": "Internet Culture", "blurb": "Where discourse goes to be deep-fried.", "order": 6 },
+  { "slug": "science-innovation", "name": "Science & Innovation", "blurb": "Peer-reviewed nonsense. Not actually peer-reviewed.", "order": 7 },
+  { "slug": "everyday-life", "name": "Everyday Life", "blurb": "The quiet heroism of getting through a Tuesday.", "order": 8 },
+  { "slug": "sports", "name": "Sports", "blurb": "Grown adults arguing about balls, respectfully.", "order": 9 },
+  { "slug": "relationships-society", "name": "Relationships & Society", "blurb": "People are complicated. We make it worse, lovingly.", "order": 10 }
+]

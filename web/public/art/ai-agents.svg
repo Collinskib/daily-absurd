@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#16130e"/>
+  <rect x="140" y="180" width="380" height="240" rx="20" fill="#faf6ec"/>
+  <rect x="200" y="130" width="260" height="90" rx="18" fill="#faf6ec"/>
+  <circle cx="270" cy="175" r="16" fill="#16130e"/>
+  <circle cx="390" cy="175" r="16" fill="#16130e"/>
+  <rect x="290" y="330" width="80" height="14" rx="7" fill="#16130e"/>
+  <g fill="#e63b12">
+    <rect x="640" y="360" width="120" height="60" rx="10"/>
+    <rect x="780" y="300" width="120" height="120" rx="10"/>
+    <rect x="920" y="220" width="120" height="200" rx="10"/>
+  </g>
+  <text x="330" y="480" font-family="Georgia,serif" font-style="italic" font-size="30" fill="#faf6ec" text-anchor="middle">awaiting instructions</text>
+  <text x="780" y="480" font-family="Helvetica,sans-serif" font-size="26" font-weight="bold" fill="#faf6ec">INVESTOR CONFIDENCE</text>
+  <text x="840" y="160" font-family="Georgia,serif" font-size="34" fill="#e63b12" font-style="italic">consumer adoption: see below</text>
+</svg>
