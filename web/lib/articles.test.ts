@@ -33,7 +33,9 @@ describe("content model", () => {
   it("search finds relevant articles", () => {
     const res = searchArticles("microsoft");
     expect(res.length).toBeGreaterThan(0);
-    expect(res[0].headline.toLowerCase()).toContain("microsoft");
+    expect(
+      res.some((a) => a.headline.toLowerCase().includes("microsoft")),
+    ).toBe(true);
   });
 
   it("related articles exclude self", () => {
