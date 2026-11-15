@@ -49,7 +49,13 @@ MONTHLY_READER_TARGET = int(os.environ.get("ABSURD_READER_TARGET", "10000"))
 VERCEL_TOKEN = os.environ.get("ABSURD_VERCEL_TOKEN") or os.environ.get("VERCEL_TOKEN", "")
 VERCEL_PROJECT_ID = os.environ.get("ABSURD_VERCEL_PROJECT_ID", "")
 VERCEL_TEAM_ID = os.environ.get("ABSURD_VERCEL_TEAM_ID", "")
-# Google Search Console OAuth — produced by `cli gsc-auth` (one-time flow).
+# Google Search Console. Preferred auth: service-account JSON
+# (ABSURD_GSC_SA_PATH — the shared claude-seo creds location is the
+# default). Alternative: OAuth creds from `cli gsc-auth` (one-time flow).
+GSC_SA_PATH = os.environ.get(
+    "ABSURD_GSC_SA_PATH",
+    str(Path.home() / ".config" / "claude-seo" / "service_account.json"),
+)
 GSC_SITE_URL = os.environ.get("ABSURD_GSC_SITE", "")
 GSC_CLIENT_ID = os.environ.get("ABSURD_GSC_CLIENT_ID", "")
 GSC_CLIENT_SECRET = os.environ.get("ABSURD_GSC_CLIENT_SECRET", "")

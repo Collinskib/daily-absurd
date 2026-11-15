@@ -8,14 +8,17 @@ reader target. Stdlib only, plain HTTPS:
   auth (~/.local/share/com.vercel.cli/auth.json). Project/team IDs come
   from web/.vercel/project.json (or ABSURD_VERCEL_PROJECT_ID /
   ABSURD_VERCEL_TEAM_ID).
-- Search Console searchAnalytics API. Auth is an OAuth refresh-token
-  exchange — no crypto needed, so stdlib suffices. Credentials come from
-  ABSURD_GSC_* env vars, produced once by `python3 -m absurd_ops.cli
-  gsc-auth` (see docs/OPERATIONS.md).
+- Search Console searchAnalytics API. Preferred auth is a
+  service-account JWT grant (ABSURD_GSC_SA_PATH, RS256 signed with
+  `cryptography` or `openssl`); the OAuth refresh-token exchange
+  (ABSURD_GSC_* vars from `cli gsc-auth`) remains as fallback.
 """
 from __future__ import annotations
 
+import base64
 import json
+import subprocess
+import tempfile
 import time
 import urllib.parse
 import urllib.request
@@ -57,6 +60,22 @@ def _request(url: str, token: str | None = None, payload: dict | None = None,
 def _get(url: str, params: dict, token: str) -> dict:
     sep = "&" if "?" in url else "?"
     return _request(f"{url}{sep}{urllib.parse.urlencode(params)}", token)
+
+
+def _post_form(url: str, fields: dict) -> dict:
+    req = urllib.request.Request(
+        url,
+        data=urllib.parse.urlencode(fields).encode(),
+        headers={"Content-Type": "application/x-www-form-urlencoded",
+                 "User-Agent": config.USER_AGENT},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return json.loads(r.read().decode() or "{}")
+    except urllib.error.HTTPError as e:
+        raise MetricsError(f"HTTP {e.code} from {url}: {e.read().decode()[:300]}") from e
+    except Exception as e:
+        raise MetricsError(f"{url}: {e}") from e
 
 
 # --- Vercel Web Analytics -----------------------------------------------------
@@ -147,18 +166,71 @@ def vercel_breakdown(dimension: str, since: str, until: str,
 
 # --- Google Search Console ----------------------------------------------------
 
+def _b64url(data: bytes) -> str:
+    return base64.urlsafe_b64encode(data).rstrip(b"=").decode()
+
+
+def _sign_rs256(msg: bytes, key_pem: str) -> bytes:
+    try:
+        from cryptography.hazmat.primitives import hashes, serialization
+        from cryptography.hazmat.primitives.asymmetric import padding
+        key = serialization.load_pem_private_key(key_pem.encode(), password=None)
+        return key.sign(msg, padding.PKCS1v15(), hashes.SHA256())
+    except ImportError:
+        # openssl is present on any system running the pipeline.
+        with tempfile.TemporaryDirectory() as td:
+            kp = Path(td) / "k.pem"
+            kp.write_text(key_pem)
+            mp = Path(td) / "m"
+            mp.write_bytes(msg)
+            return subprocess.run(
+                ["openssl", "dgst", "-sha256", "-sign", str(kp), str(mp)],
+                capture_output=True, check=True,
+            ).stdout
+
+
+def _sa_assertion(sa: dict) -> str:
+    """JWT for the service-account grant (RFC 7523, RS256)."""
+    now = int(time.time())
+    header = _b64url(json.dumps({"alg": "RS256", "typ": "JWT"}).encode())
+    claims = _b64url(json.dumps({
+        "iss": sa["client_email"],
+        "scope": GSC_SCOPE,
+        "aud": GSC_TOKEN_URL,
+        "iat": now,
+        "exp": now + 3600,
+    }).encode())
+    sig = _b64url(_sign_rs256(f"{header}.{claims}".encode(), sa["private_key"]))
+    return f"{header}.{claims}.{sig}"
+
+
+def _sa_configured() -> bool:
+    return bool(config.GSC_SITE_URL and config.GSC_SA_PATH
+                and Path(config.GSC_SA_PATH).expanduser().exists())
+
+
 def gsc_configured() -> bool:
+    if _sa_configured():
+        return True
     return bool(config.GSC_SITE_URL and config.GSC_CLIENT_ID
                 and config.GSC_CLIENT_SECRET and config.GSC_REFRESH_TOKEN)
 
 
 def gsc_access_token() -> str:
-    res = _request(GSC_TOKEN_URL, payload={
-        "client_id": config.GSC_CLIENT_ID,
-        "client_secret": config.GSC_CLIENT_SECRET,
-        "refresh_token": config.GSC_REFRESH_TOKEN,
-        "grant_type": "refresh_token",
-    })
+    if _sa_configured():
+        sa_path = Path(config.GSC_SA_PATH).expanduser()
+        sa = json.loads(sa_path.read_text())
+        res = _post_form(GSC_TOKEN_URL, {
+            "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+            "assertion": _sa_assertion(sa),
+        })
+    else:
+        res = _request(GSC_TOKEN_URL, payload={
+            "client_id": config.GSC_CLIENT_ID,
+            "client_secret": config.GSC_CLIENT_SECRET,
+            "refresh_token": config.GSC_REFRESH_TOKEN,
+            "grant_type": "refresh_token",
+        })
     token = res.get("access_token")
     if not token:
         raise MetricsError("GSC token exchange returned no access_token")

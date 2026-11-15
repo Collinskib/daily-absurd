@@ -24,7 +24,8 @@ See `.env.example` for the full template.
 | `ABSURD_READER_TARGET` | pipeline service | monthly visitor goal (default 10000) |
 | `ABSURD_VERCEL_TOKEN` | pipeline service | optional; falls back to local `vercel` CLI auth |
 | `ABSURD_GSC_SITE` | pipeline service | Search Console property URL |
-| `ABSURD_GSC_CLIENT_ID` / `_SECRET` / `_REFRESH_TOKEN` | pipeline service | OAuth creds from `python3 -m absurd_ops.cli gsc-auth` |
+| `ABSURD_GSC_SA_PATH` | pipeline service | service-account JSON (default: shared `~/.config/claude-seo/service_account.json`) |
+| `ABSURD_GSC_CLIENT_ID` / `_SECRET` / `_REFRESH_TOKEN` | pipeline service | OAuth creds from `python3 -m absurd_ops.cli gsc-auth` (fallback) |
 
 The pipeline service loads `.env` via `EnvironmentFile=` — put the GSC
 values there, then `systemctl --user daemon-reload`.
