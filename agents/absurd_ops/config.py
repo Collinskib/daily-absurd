@@ -43,6 +43,18 @@ GIT_REMOTE = os.environ.get("ABSURD_GIT_REMOTE", "origin")
 GIT_BRANCH = os.environ.get("ABSURD_GIT_BRANCH", "main")
 GIT_PUSH = os.environ.get("ABSURD_GIT_PUSH", "1") == "1"
 
+# Traffic metrics — the growth analyst steers toward this many monthly
+# readers. Vercel auth falls back to the local `vercel` CLI token.
+MONTHLY_READER_TARGET = int(os.environ.get("ABSURD_READER_TARGET", "10000"))
+VERCEL_TOKEN = os.environ.get("ABSURD_VERCEL_TOKEN") or os.environ.get("VERCEL_TOKEN", "")
+VERCEL_PROJECT_ID = os.environ.get("ABSURD_VERCEL_PROJECT_ID", "")
+VERCEL_TEAM_ID = os.environ.get("ABSURD_VERCEL_TEAM_ID", "")
+# Google Search Console OAuth — produced by `cli gsc-auth` (one-time flow).
+GSC_SITE_URL = os.environ.get("ABSURD_GSC_SITE", "")
+GSC_CLIENT_ID = os.environ.get("ABSURD_GSC_CLIENT_ID", "")
+GSC_CLIENT_SECRET = os.environ.get("ABSURD_GSC_CLIENT_SECRET", "")
+GSC_REFRESH_TOKEN = os.environ.get("ABSURD_GSC_REFRESH_TOKEN", "")
+
 DASHBOARD_HOST = os.environ.get("ABSURD_DASHBOARD_HOST", "127.0.0.1")
 DASHBOARD_PORT = int(os.environ.get("ABSURD_DASHBOARD_PORT", "8899"))
 

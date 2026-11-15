@@ -10,6 +10,8 @@ Environment=PYTHONPATH=%h/Documents/daily-absurd/agents
 Environment=SITE_URL=https://daily-absurd.vercel.app
 Environment=ABSURD_DEVIN_ENABLED=1
 Environment=ABSURD_GIT_PUSH=1
+# Secrets (GSC OAuth, optional Vercel token) live in the gitignored .env
+EnvironmentFile=-%h/Documents/daily-absurd/.env
 ExecStart=/usr/bin/python3 -m absurd_ops.cli daily
 TimeoutStartSec=5400
 Nice=10
