@@ -271,6 +271,44 @@ def _days_ago(n: int) -> str:
     return time.strftime("%Y-%m-%d", time.gmtime(time.time() - n * 86400))
 
 
+def traffic_brief_section() -> str:
+    """Compact traffic summary for Devin prompts — what's pulling readers.
+
+    Read from the latest growth-report.json; empty/absent fields degrade
+    to the bare target line so prompts stay useful on day one.
+    """
+    lines = [f"READER TARGET: {config.MONTHLY_READER_TARGET} visitors/month."]
+    report = config.STATE_DIR / "growth-report.json"
+    try:
+        traffic = json.loads(report.read_text()).get("traffic") or {}
+    except (OSError, json.JSONDecodeError):
+        traffic = {}
+    target = traffic.get("target") or {}
+    if target:
+        lines[0] += (
+            f" Month-to-date {target.get('visitors_mtd', 0)} "
+            f"({target.get('pct_of_target', 0)}%) — pace needed "
+            f"~{target.get('required_daily_pace', '?')}/day for "
+            f"{target.get('days_left_in_month', '?')} more days."
+        )
+    vercel = traffic.get("vercel") or {}
+    gsc = traffic.get("search_console") or {}
+    pages = [r["key"] for r in vercel.get("top_pages", []) if r.get("key")]
+    refs = [r["key"] for r in vercel.get("top_referrers", []) if r.get("key")]
+    queries = [(r.get("keys") or [""])[0] for r in gsc.get("top_queries", [])]
+    if pages:
+        lines.append("MOST-READ PAGES: " + "; ".join(pages[:5]))
+    if refs:
+        lines.append("TOP REFERRERS: " + "; ".join(refs[:5]))
+    if any(queries):
+        lines.append("TOP SEARCH QUERIES: " + "; ".join(q for q in queries if q)[:400])
+    lines.append(
+        "Weight shareability for premises that fit the referrers and "
+        "queries above; favour topics matching the most-read pages."
+    )
+    return "\n".join(lines)
+
+
 def collect() -> dict:
     """One traffic snapshot. Individual source failures are captured as
     {"error": ...} so a broken integration never sinks the pipeline run."""

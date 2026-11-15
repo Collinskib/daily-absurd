@@ -6,14 +6,14 @@ the tasks table where applicable, idempotent (safe to re-run).
 | # | Agent | Staffing | Input → Output |
 |---|-------|----------|----------------|
 | 1 | **Global Trend Monitor** | Python | RSS/Atom feeds → `trends` rows (deduped by URL) |
-| 2 | **Satire Opportunity Analyst** | Python + 1 Devin session | trends → scored `story_ideas` with angles, category, risk screen |
+| 2 | **Satire Opportunity Analyst** | Python + 1 Devin session | trends + traffic brief → scored `story_ideas` with angles, category, risk screen |
 | 3 | **Satirical Writer** | Devin (`devin -p`) | idea + trend context → draft article JSON |
 | 4 | **Comedy Editor** | Devin | draft → verdict JSON (score, notes, rewrite instructions) |
 | 5 | **Factual Context & Safety Editor** | Python + Devin | draft → pass/fail; deterministic rules + editorial review |
 | 6 | **SEO Editor** | Python | draft → SEO-complete article (title, description, slug, tags, art) |
 | 7 | **Social Media Creative** | Python | article → per-platform pack + SVG share card (never auto-posts) |
 | 8 | **Publishing Agent** | Python + git | approved draft → article JSON, commit, push, URL verify |
-| 9 | **Growth Analyst** | Python | DB + subscriber ledger → metrics rows + weekly report |
+| 9 | **Growth Analyst** | Python | DB + subscriber ledger + Vercel/GSC traffic → metrics rows + report vs reader target |
 | 10 | **Revenue Strategist** | Python | monetization readiness ledger (prepared, never activated) |
 
 ## Gates

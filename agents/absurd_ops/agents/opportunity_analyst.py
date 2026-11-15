@@ -10,7 +10,7 @@ import json
 import re
 import time
 
-from .. import config, db
+from .. import config, db, metrics
 from ..devin import run_session, read_json_output
 from .base import traced
 
@@ -98,10 +98,13 @@ def _devin_angle_pass(candidates: list[dict]) -> list[dict] | None:
         f"{i+1}. [{c['source']}] {c['title']} — {c['summary'][:200]} (url: {c['source_url']})"
         for i, c in enumerate(candidates)
     )
+    traffic_ctx = metrics.traffic_brief_section()
     prompt.write_text(f"""You are the Satire Opportunity Analyst for The Daily Absurd,
 an international satirical news publication. Below are real trending stories.
 
 {cand_lines}
+
+{traffic_ctx}
 
 Your job: choose AT MOST {config.MAX_IDEAS_PER_RUN} stories with the strongest
 comedic potential for an international audience. For each, output:
