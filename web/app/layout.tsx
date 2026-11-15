@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     site: "@dailyabsurd",
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "sW4lzTtJDnlbdDvVzOfygyVx1BosbooIrLwdEMMqXc8",
+  },
   other: {
     "satire-disclosure":
       "The Daily Absurd publishes fictional satirical articles for entertainment.",
