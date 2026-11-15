@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import re
+import sys
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 from html import unescape
@@ -35,8 +37,28 @@ def _fetch(url: str, timeout: int = 15) -> bytes | None:
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.read(2_000_000)
-    except Exception:
+    except Exception as exc:
+        print(f"[sources] fetch failed {url}: {exc}", file=sys.stderr)
         return None
+
+
+def wait_for_network(timeout: int | None = None, interval: int = 10) -> bool:
+    """Block until a feed responds or the deadline passes.
+
+    The systemd timer uses Persistent=true, so missed runs fire seconds after
+    boot — typically before Wi-Fi is up. Probing here keeps catch-up runs from
+    silently starving the pipeline.
+    """
+    deadline = time.monotonic() + (
+        config.NET_WAIT_SECONDS if timeout is None else timeout
+    )
+    probe = FEEDS[0][2]
+    while True:
+        if _fetch(probe, timeout=10):
+            return True
+        if time.monotonic() >= deadline:
+            return False
+        time.sleep(interval)
 
 
 def _clean(text: str) -> str:
@@ -92,6 +114,9 @@ def _parse_rss(data: bytes, source: str, region: str) -> list[dict]:
 
 
 def fetch_trends(limit_per_feed: int = 15) -> list[dict]:
+    if not wait_for_network():
+        print("[sources] no connectivity after wait; fetching anyway",
+              file=sys.stderr)
     out: list[dict] = []
     for source, region, url in FEEDS:
         data = _fetch(url)

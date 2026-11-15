@@ -35,6 +35,10 @@ MIN_IDEA_SCORE = float(os.environ.get("ABSURD_MIN_IDEA_SCORE", "6.5"))
 MIN_COMEDY_SCORE = float(os.environ.get("ABSURD_MIN_COMEDY_SCORE", "7.0"))
 MAX_REWRITES = int(os.environ.get("ABSURD_MAX_REWRITES", "1"))
 
+# Runs often fire seconds after boot (Persistent timer catch-up) before Wi-Fi
+# is up. Wait this long for connectivity before giving up on the run.
+NET_WAIT_SECONDS = int(os.environ.get("ABSURD_NET_WAIT_SECONDS", "300"))
+
 GIT_REMOTE = os.environ.get("ABSURD_GIT_REMOTE", "origin")
 GIT_BRANCH = os.environ.get("ABSURD_GIT_BRANCH", "main")
 GIT_PUSH = os.environ.get("ABSURD_GIT_PUSH", "1") == "1"

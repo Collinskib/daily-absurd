@@ -6,7 +6,7 @@ trends carry their source through the whole pipeline.
 """
 from __future__ import annotations
 
-from .. import db
+from .. import db, sources
 from ..sources import fetch_trends
 from .base import traced
 
@@ -14,6 +14,10 @@ from .base import traced
 @traced("trend_monitor")
 def run() -> dict:
     items = fetch_trends()
+    if not items:
+        raise RuntimeError(
+            f"0 items fetched across {len(sources.FEEDS)} feeds — likely network outage"
+        )
     inserted = 0
     for it in items:
         exists = db.one("SELECT id FROM trends WHERE source_url=?", (it["url"],))

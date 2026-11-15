@@ -5,6 +5,7 @@ import json
 import time
 
 from . import config, db
+from .sources import wait_for_network
 from .agents import (
     trend_monitor, opportunity_analyst, writer, comedy_editor,
     safety_editor, seo_editor, social_agent, publishing_agent,
@@ -43,6 +44,21 @@ def daily() -> dict:
     db.init()
     t0 = time.time()
     results: dict[str, dict] = {}
+
+    # The timer's Persistent catch-up runs fire seconds after boot, before
+    # Wi-Fi is up. Wait for connectivity rather than starving the whole run;
+    # if it never comes up, fail the run visibly instead of reporting "ok".
+    if not wait_for_network():
+        rid = db.log_run("pipeline")
+        db.finish_run(rid, "error", "no connectivity after wait — run skipped")
+        results["pipeline"] = {
+            "agent": "pipeline",
+            "ok": False,
+            "error": "no connectivity after wait — run skipped",
+        }
+        results["_elapsed_seconds"] = round(time.time() - t0, 1)
+        db.write_json(config.STATE_DIR / "last-run.json", results)
+        return results
 
     results["subscribers"] = {"synced": sync_subscribers()}
     results["trend_monitor"] = trend_monitor()
