@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#16130e"/>
+  <circle cx="783" cy="167" r="71" fill="#e63b12" fill-opacity="0.9"/><circle cx="444" cy="308" r="82" fill="#faf6ec" fill-opacity="0.15"/><circle cx="905" cy="449" r="93" fill="#faf6ec" fill-opacity="0.15"/><circle cx="566" cy="270" r="104" fill="#e63b12" fill-opacity="0.9"/><circle cx="227" cy="411" r="115" fill="#faf6ec" fill-opacity="0.15"/>
+  <rect x="60" y="60" width="1080" height="480" fill="none" stroke="#faf6ec" stroke-width="5"/>
+  <rect x="90" y="90" width="150" height="46" fill="#e63b12"/>
+  <text x="165" y="122" font-family="Helvetica,sans-serif" font-size="24" font-weight="bold"
+        fill="#16130e" text-anchor="middle" letter-spacing="3">SATIRE</text>
+  <text x="600" y="500" font-family="Georgia,serif" font-style="italic" font-size="30"
+        fill="#faf6ec" text-anchor="middle">Olympic Officials 'So Proud'</text>
+  <text x="600" y="538" font-family="Georgia,serif" font-style="italic" font-size="30"
+        fill="#faf6ec" fill-opacity="0.7" text-anchor="middle">of Senegal, 66, for Hosting</text>
+</svg>
