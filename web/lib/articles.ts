@@ -55,6 +55,11 @@ function readArticleFile(file: string): Article | null {
   }
 }
 
+export function publishedTime(a: ArticleMeta): number {
+  const t = Date.parse(a.publishedAt);
+  return Number.isNaN(t) ? 0 : t;
+}
+
 export function getAllArticles(): Article[] {
   if (!fs.existsSync(ARTICLES_DIR)) return [];
   return fs
@@ -62,7 +67,7 @@ export function getAllArticles(): Article[] {
     .filter((f) => f.endsWith(".json"))
     .map(readArticleFile)
     .filter((a): a is Article => a !== null)
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+    .sort((a, b) => publishedTime(b) - publishedTime(a));
 }
 
 export function getArticle(slug: string): Article | undefined {
@@ -80,9 +85,19 @@ export function getRelated(article: Article, limit = 3): Article[] {
   return [...sameCat, ...rest].slice(0, limit);
 }
 
+const FEATURED_FRESH_MS = 48 * 3600 * 1000;
+
 export function getFeatured(): Article | undefined {
   const all = getAllArticles();
-  return all.find((a) => a.featured) ?? all[0];
+  const newest = all[0];
+  if (!newest) return undefined;
+  // A featured pin only counts while the story is fresh — it must never
+  // hold the hero slot once newer stories have been out for 48h.
+  const feat = all.find((a) => a.featured);
+  if (feat && publishedTime(newest) - publishedTime(feat) <= FEATURED_FRESH_MS) {
+    return feat;
+  }
+  return newest;
 }
 
 export function getAllTags(): string[] {

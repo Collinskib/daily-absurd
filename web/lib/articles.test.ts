@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   getAllArticles, getArticle, categories, searchArticles,
-  getRelated, categoryName, getArticlesByCategory,
+  getRelated, categoryName, getArticlesByCategory, getFeatured,
 } from "./articles";
 
 describe("content model", () => {
@@ -50,6 +50,14 @@ describe("content model", () => {
       expect(a.category).toBe(cat);
     }
     expect(categoryName(cat)).toBeTruthy();
+  });
+
+  it("featured pin never shows a stale story", () => {
+    const newest = getAllArticles()[0];
+    const feat = getFeatured();
+    expect(feat).toBeDefined();
+    const ageMs = Date.parse(newest.publishedAt) - Date.parse(feat!.publishedAt);
+    expect(ageMs).toBeLessThanOrEqual(48 * 3600 * 1000);
   });
 
   it("getArticle round-trips", () => {

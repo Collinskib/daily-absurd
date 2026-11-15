@@ -5,12 +5,18 @@
   "category": "technology-ai",
   "author": "Basil Farthingale, Senior Technology Correspondent",
   "publishedAt": "2026-11-14T08:00:00.000Z",
-  "tags": ["microsoft", "outage", "teams", "office", "technology"],
+  "tags": [
+    "microsoft",
+    "outage",
+    "teams",
+    "office",
+    "technology"
+  ],
   "seoTitle": "Microsoft 365 Outage Forces Workers to Speak Out Loud | The Daily Absurd",
   "seoDescription": "Satire: a global Microsoft 365 outage left millions without Teams or Outlook, forcing the rediscovery of face-to-face conversation. Experts are horrified.",
   "sourceEvent": "A global Microsoft 365 outage on 12–13 November 2026 disrupted Outlook, Teams and Copilot for roughly 24 hours; Microsoft blamed a network capacity upgrade and stressed it was not caused by AI.",
   "sourceUrl": "https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-nov-14-2026",
-  "featured": true,
+  "featured": false,
   "art": "microsoft-outage.svg",
   "social": {
     "x": "BREAKING: Microsoft outage forces millions to communicate using ancient 'speech' technology. Survivors describe making 'eye contact' and 'hearing a human voice in real time'. Full report:",
