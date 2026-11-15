@@ -29,7 +29,7 @@ from . import config
 
 VERCEL_API = "https://api.vercel.com"
 GSC_TOKEN_URL = "https://oauth2.googleapis.com/token"
-GSC_API = "https://searchconsole.googleapis.com"
+GSC_API = "https://www.googleapis.com/webmasters/v3"
 GSC_SCOPE = "https://www.googleapis.com/auth/webmasters.readonly"
 
 
@@ -155,7 +155,8 @@ def vercel_breakdown(dimension: str, since: str, until: str,
         if isinstance(key, dict):
             key = key.get(dimension) or next(iter(key.values()), "")
         if key is None:
-            key = row.get(dimension, "")
+            # Dimensions arrive as their own field; time buckets use "timestamp".
+            key = row.get(dimension) or row.get("timestamp", "")
         rows.append({
             "key": key,
             "visitors": int(row.get("visitors", 0)),
@@ -241,7 +242,7 @@ def gsc_search_analytics(start: str, end: str, dimensions: list[str],
                          row_limit: int = 25) -> list[dict]:
     site = urllib.parse.quote(config.GSC_SITE_URL, safe="")
     res = _request(
-        f"{GSC_API}/v1/sites/{site}/searchAnalytics/query",
+        f"{GSC_API}/sites/{site}/searchAnalytics/query",
         token=gsc_access_token(),
         payload={
             "startDate": start, "endDate": end,
