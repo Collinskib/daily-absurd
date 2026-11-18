@@ -2,7 +2,8 @@
 
 Turns each approved article into a per-platform asset pack (posts, captions,
 alt headlines, short-video script scaffold, share-card SVG). Packs are
-written to the queue — nothing is posted anywhere automatically.
+written to the queue; posting them is social_poster's job (opt-in via
+ABSURD_SOCIAL_POST=1).
 """
 from __future__ import annotations
 

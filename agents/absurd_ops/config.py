@@ -61,6 +61,19 @@ GSC_CLIENT_ID = os.environ.get("ABSURD_GSC_CLIENT_ID", "")
 GSC_CLIENT_SECRET = os.environ.get("ABSURD_GSC_CLIENT_SECRET", "")
 GSC_REFRESH_TOKEN = os.environ.get("ABSURD_GSC_REFRESH_TOKEN", "")
 
+# Social posting (Agent 8 — social_poster). Opt-in: without ABSURD_SOCIAL_POST=1
+# the agent dry-runs and posts nothing. Each channel activates when its pair
+# of credentials is present. Posts go out as joke-text + link-in-self-reply.
+SOCIAL_POST_ENABLED = os.environ.get("ABSURD_SOCIAL_POST", "0") == "1"
+SOCIAL_MAX_PER_RUN = int(os.environ.get("ABSURD_SOCIAL_MAX_PER_RUN", "2"))
+BSKY_PDS = os.environ.get("ABSURD_BSKY_PDS", "https://bsky.social")
+BSKY_HANDLE = os.environ.get("ABSURD_BSKY_HANDLE", "")
+BSKY_APP_PASSWORD = os.environ.get("ABSURD_BSKY_APP_PASSWORD", "")
+MASTO_INSTANCE = os.environ.get("ABSURD_MASTO_INSTANCE", "")
+MASTO_TOKEN = os.environ.get("ABSURD_MASTO_TOKEN", "")
+THREADS_USER_ID = os.environ.get("ABSURD_THREADS_USER_ID", "")
+THREADS_TOKEN = os.environ.get("ABSURD_THREADS_TOKEN", "")
+
 DASHBOARD_HOST = os.environ.get("ABSURD_DASHBOARD_HOST", "127.0.0.1")
 DASHBOARD_PORT = int(os.environ.get("ABSURD_DASHBOARD_PORT", "8899"))
 

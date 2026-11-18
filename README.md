@@ -40,9 +40,10 @@ social_agent ◀── seo_editor ◀── safety_editor ◀── comedy_edito
      │
      ▼
 publishing_agent ──▶ git commit/push ──▶ Vercel deploy ──▶ URL verify
-     │
-     ▼
-growth_analyst + revenue_strategist (metrics, reports)
+     │                                                          │
+     ▼                                                          ▼
+growth_analyst + revenue_strategist      social_poster ──▶ Bluesky/Mastodon/Threads
+(metrics, reports)                       (opt-in via ABSURD_SOCIAL_POST=1)
 ```
 
 Quality gates: an idea must score ≥ 6.5/10 to reach the writer; a draft must

@@ -72,6 +72,17 @@ CREATE TABLE IF NOT EXISTS social_assets (
   content TEXT,
   created_at TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS social_posts (
+  id TEXT PRIMARY KEY,
+  slug TEXT NOT NULL,
+  channel TEXT NOT NULL,                  -- bluesky|mastodon|threads
+  status TEXT NOT NULL,                   -- posted|failed
+  remote_id TEXT,
+  remote_url TEXT,
+  error TEXT,
+  created_at TEXT NOT NULL,
+  UNIQUE (slug, channel)
+);
 CREATE TABLE IF NOT EXISTS metrics (
   id TEXT PRIMARY KEY,
   name TEXT NOT NULL,

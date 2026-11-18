@@ -1,4 +1,4 @@
-# The Ten Agents
+# The Eleven Agents
 
 Every agent: defined input/output, `agent_runs` logging, bounded retries via
 the tasks table where applicable, idempotent (safe to re-run).
@@ -11,10 +11,11 @@ the tasks table where applicable, idempotent (safe to re-run).
 | 4 | **Comedy Editor** | Devin | draft → verdict JSON (score, notes, rewrite instructions) |
 | 5 | **Factual Context & Safety Editor** | Python + Devin | draft → pass/fail; deterministic rules + editorial review |
 | 6 | **SEO Editor** | Python | draft → SEO-complete article (title, description, slug, tags, art) |
-| 7 | **Social Media Creative** | Python | article → per-platform pack + SVG share card (never auto-posts) |
+| 7 | **Social Media Creative** | Python | article → per-platform pack + SVG share card (packs only; posting is Agent 9) |
 | 8 | **Publishing Agent** | Python + git | approved draft → article JSON, commit, push, URL verify |
-| 9 | **Growth Analyst** | Python | DB + subscriber ledger + Vercel/GSC traffic → metrics rows + report vs reader target |
-| 10 | **Revenue Strategist** | Python | monetization readiness ledger (prepared, never activated) |
+| 9 | **Social Poster** | Python | deployed article + pack → posts to Bluesky/Mastodon/Threads (joke + link-in-reply), `social_posts` rows. Opt-in via `ABSURD_SOCIAL_POST=1`; dry-runs otherwise |
+| 10 | **Growth Analyst** | Python | DB + subscriber ledger + Vercel/GSC traffic → metrics rows + report vs reader target |
+| 11 | **Revenue Strategist** | Python | monetization readiness ledger (prepared, never activated) |
 
 ## Gates
 

@@ -8,8 +8,8 @@ from . import config, db
 from .sources import wait_for_network
 from .agents import (
     trend_monitor, opportunity_analyst, writer, comedy_editor,
-    safety_editor, seo_editor, social_agent, publishing_agent,
-    growth_analyst, revenue_strategist,
+    safety_editor, seo_editor, social_agent, social_poster,
+    publishing_agent, growth_analyst, revenue_strategist,
 )
 
 
@@ -69,6 +69,7 @@ def daily() -> dict:
     results["seo_editor"] = seo_editor()
     results["social_agent"] = social_agent()
     results["publishing_agent"] = publishing_agent()
+    results["social_poster"] = social_poster()
     results["growth_analyst"] = growth_analyst()
     results["revenue_strategist"] = revenue_strategist()
 
