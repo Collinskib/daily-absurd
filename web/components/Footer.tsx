@@ -38,6 +38,8 @@ export default function Footer() {
             <p className="kicker text-faded mb-3">The Paper</p>
             <ul className="grid grid-cols-1 gap-1.5 text-sm">
               <li><Link href="/about" className="text-ink-soft hover:text-vermilion transition-colors">About us</Link></li>
+              <li><Link href="/satirical-news-sites" className="text-ink-soft hover:text-vermilion transition-colors">Satirical news sites</Link></li>
+              <li><Link href="/satire-vs-fake-news" className="text-ink-soft hover:text-vermilion transition-colors">Satire vs fake news</Link></li>
               <li><Link href="/editorial-policy" className="text-ink-soft hover:text-vermilion transition-colors">Editorial policy</Link></li>
               <li><Link href="/disclaimer" className="text-ink-soft hover:text-vermilion transition-colors">Satire disclaimer</Link></li>
               <li><Link href="/contact" className="text-ink-soft hover:text-vermilion transition-colors">Contact</Link></li>

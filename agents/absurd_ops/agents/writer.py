@@ -53,7 +53,9 @@ JSON schema (all fields required):
   "author": "<invented house byline + desk, e.g. 'Vera Okonkwo, Sports Desk'>",
   "publishedAt": "{db.now()}",
   "tags": ["3-6", "lowercase", "tags"],
-  "seoTitle": "search-friendly, <=60 chars, keeps the joke",
+  "seoTitle": "<=60 chars. Front-load the real searchable subject — names, place,
+    the actual event people would google — then keep the twist. Example shape:
+    'Canada Seizes 96 Luxury Cars Bound for Lagos (Allegedly Emigrating)'",
   "seoDescription": "<=160 chars, says it's satire",
   "sourceEvent": "2-sentence factual description of the REAL event",
   "sourceUrl": "{trend.get('source_url', '')}",

@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/newsletter",
     "/category",
     "/search",
+    "/satirical-news-sites",
+    "/satire-vs-fake-news",
   ].map((p) => ({
     url: `${site.url}${p}`,
     lastModified: new Date(),

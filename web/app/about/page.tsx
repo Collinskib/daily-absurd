@@ -1,6 +1,10 @@
 import PageShell from "@/components/PageShell";
 
-export const metadata = { title: "About" };
+export const metadata = {
+  title: "About — An International Satirical News Publication",
+  description:
+    "The Daily Absurd is an international satirical news publication: fictional stories inspired by real events, clearly labelled, written to be laughed at.",
+};
 
 export default function About() {
   return (
