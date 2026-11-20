@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <rect width="1200" height="600" fill="#16130e"/>
+  <path d="M150 460 Q600 81 1050 460" stroke="#faf6ec" stroke-width="14" fill="none"/><circle cx="600" cy="141" r="70" fill="#d9a521"/>
+  <rect x="60" y="60" width="1080" height="480" fill="none" stroke="#faf6ec" stroke-width="5"/>
+  <rect x="90" y="90" width="150" height="46" fill="#d9a521"/>
+  <text x="165" y="122" font-family="Helvetica,sans-serif" font-size="24" font-weight="bold"
+        fill="#16130e" text-anchor="middle" letter-spacing="3">SATIRE</text>
+  <text x="600" y="500" font-family="Georgia,serif" font-style="italic" font-size="30"
+        fill="#faf6ec" text-anchor="middle">FAA Installs First New</text>
+  <text x="600" y="538" font-family="Georgia,serif" font-style="italic" font-size="30"
+        fill="#faf6ec" fill-opacity="0.7" text-anchor="middle">Cable Since Disco, Sky Immediately</text>
+</svg>
